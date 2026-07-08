@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sentinel-sdk"
+version = "0.1.0"
+description = "Official Python SDK for the Kallon Sentry Tower platform (Terra Industries)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Proprietary" }
+authors = [{ name = "Terra Industries" }]
+keywords = ["kallon", "sentinel", "surveillance", "ptz", "sdk"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+]
+dependencies = [
+    "httpx>=0.24,<1",
+]
+
+[project.urls]
+Homepage = "https://github.com/Yaqcodes/sentinel-sdk"
+Documentation = "https://github.com/Yaqcodes/sentinel-sdk/tree/main/docs"
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["sentinel_sdk"]
