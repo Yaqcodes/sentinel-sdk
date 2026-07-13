@@ -7,8 +7,13 @@ sidebar_position: 1
 # Receiving & Verifying Alerts
 
 Towers detect events (tamper, stream failure, temperature, light intrusion)
-and push **HMAC-SHA256-signed JSON** to the customer hub, which forwards
-verified alerts to your ingest endpoint. Alerts are push — you never poll.
+and push **HMAC-SHA256-signed JSON** to the customer hub. The hub forwards
+verified alerts to the control plane (`POST /v1/alerts/ingest`). Customer
+dashboards consume history via `GET /v1/alerts` or live updates via
+`GET /v1/events` (SSE). See [Alerts API](../api/alerts-api).
+
+For custom ingest (bypassing the platform), verify signatures yourself as
+below. Alerts are push — you never poll tower status for events.
 
 ## The alert payload
 

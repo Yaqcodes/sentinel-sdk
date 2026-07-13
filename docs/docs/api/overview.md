@@ -9,7 +9,10 @@ sidebar_position: 1
 Base URL: your Terra control plane, e.g. `https://api.terra.example`.
 All endpoints are under `/v1`. Bodies are JSON except snapshots
 (`image/jpeg`). A machine-readable OpenAPI spec is served at
-`GET /openapi.json`.
+`GET /openapi.json` on a running control plane.
+
+Use the **[API Explorer](/api-explorer)** for interactive Swagger UI (fleet,
+tower proxy, alerts, enrollment).
 
 ## Endpoint families
 
@@ -17,6 +20,7 @@ All endpoints are under `/v1`. Bodies are JSON except snapshots
 |---|---|---|
 | **Fleet** — customers, towers | Postgres registry | milliseconds |
 | **Tower proxy** — PTZ, snapshot, status, streams | Proxied over WireGuard to the tower | +50–100 ms VPN, PTZ ~1–2 s, snapshot 1–4 s |
+| **Alerts** — ingest, history, SSE | In-memory store on control plane | push via hub forward |
 | **Enrollment** — tower first boot | Registry + hub automation | used by towers, not integrators |
 
 ## Identifiers

@@ -15,6 +15,7 @@ const sidebars = {
         "api/ptz",
         "api/snapshot",
         "api/telemetry",
+        "api/alerts-api",
         "api/enrollment",
       ],
     },

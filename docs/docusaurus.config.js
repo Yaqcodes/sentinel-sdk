@@ -36,6 +36,7 @@ const config = {
         title: "Sentinel SDK",
         items: [
           { type: "docSidebar", sidebarId: "docs", position: "left", label: "Documentation" },
+          { to: "/api-explorer", label: "API Explorer", position: "left" },
           { href: "https://github.com/Yaqcodes/sentinel-sdk", label: "GitHub", position: "right" },
         ],
       },
