@@ -28,7 +28,7 @@ export class SentinelClient {
     this.base = baseUrl.replace(/\/$/, '');
     this.apiKey = options.apiKey;
     this.timeout = options.timeout ?? 15_000;
-    this.fetchFn = options.fetch ?? fetch;
+    this.fetchFn = options.fetch ?? ((input, init) => globalThis.fetch(input, init));
   }
 
   private headers(extra?: HeadersInit): Headers {
