@@ -1,0 +1,27 @@
+{
+  "name": "@sentinel/sdk",
+  "version": "0.1.0",
+  "description": "TypeScript client for the Kallon Platform API",
+  "type": "module",
+  "main": "./typescript/dist/index.js",
+  "types": "./typescript/dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./typescript/dist/index.d.ts",
+      "import": "./typescript/dist/index.js"
+    }
+  },
+  "files": [
+    "typescript/dist",
+    "typescript/src",
+    "typescript/package.json",
+    "typescript/tsconfig.json"
+  ],
+  "scripts": {
+    "prepare": "npm install --prefix typescript && npm run build --prefix typescript"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yaqcodes/sentinel-sdk.git"
+  }
+}
