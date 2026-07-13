@@ -35,6 +35,8 @@ export class SentinelClient {
     const h = new Headers(extra);
     if (!h.has('Accept')) h.set('Accept', 'application/json');
     if (this.apiKey) h.set('X-Kallon-Api-Key', this.apiKey);
+    // ngrok free tier returns an HTML warning page (no CORS headers) unless this is set.
+    if (this.base.includes('ngrok')) h.set('ngrok-skip-browser-warning', '1');
     return h;
   }
 
