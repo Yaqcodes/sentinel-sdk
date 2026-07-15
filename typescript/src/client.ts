@@ -5,6 +5,7 @@ import type {
   PtzMoveBody,
   PtzStatusResult,
   PtzStopBody,
+  RecordingStatus,
   StatusResponse,
   StreamsResponse,
   Tower,
@@ -149,6 +150,20 @@ export class SentinelClient {
 
   async towerStreams(deviceId: string): Promise<StreamsResponse> {
     return this.request('GET', `/v1/towers/${encodeURIComponent(deviceId)}/streams`);
+  }
+
+  /** Continuous NVR recording status (desired + MediaMTX effective). */
+  async getRecording(deviceId: string): Promise<RecordingStatus> {
+    return this.request('GET', `/v1/towers/${encodeURIComponent(deviceId)}/recording`);
+  }
+
+  /** Enable/disable continuous recording on all cameras for this tower. */
+  async setRecording(deviceId: string, enabled: boolean): Promise<RecordingStatus> {
+    return this.request('PUT', `/v1/towers/${encodeURIComponent(deviceId)}/recording`, {
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ enabled }),
+      timeout: 60_000,
+    });
   }
 
   // ── alerts ───────────────────────────────────────────────────────────────

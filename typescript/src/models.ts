@@ -82,3 +82,35 @@ export type StatusResponse = Record<string, unknown> & {
   error?: string;
   device_id?: string;
 };
+
+/** Continuous NVR recording status from GET/PUT /v1/towers/{id}/recording. */
+export interface RecordingPathStatus {
+  name: string;
+  record?: boolean;
+  recordPath?: string;
+  ready?: boolean;
+  error?: string;
+}
+
+export interface RecordingStatus {
+  enabled: boolean;
+  desired?: boolean | null;
+  effective?: boolean | null;
+  record_path?: string;
+  delete_after?: string;
+  segment_duration?: string;
+  paths?: RecordingPathStatus[];
+  disk?: {
+    mount?: string;
+    source?: string | null;
+    on_nvme?: boolean | null;
+    space_free_gb?: number;
+    space_total_gb?: number;
+    space_used_gb?: number;
+  };
+  warnings?: string[];
+  ok?: boolean;
+  persist_ok?: boolean;
+  persist_error?: string;
+  error?: { code?: string; message?: string };
+}
