@@ -18,7 +18,7 @@
     "typescript/tsconfig.json"
   ],
   "scripts": {
-    "prepare": "npm install --prefix typescript && npm run build --prefix typescript"
+    "build": "npm install --prefix typescript && npm run build --prefix typescript"
   },
   "repository": {
     "type": "git",
