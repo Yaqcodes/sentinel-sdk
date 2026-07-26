@@ -19,17 +19,23 @@ ffmpeg. Expect **1–4 seconds** end to end.
 
 Returns `200` with `Content-Type: image/jpeg` (raw JPEG bytes).
 
+**① Python · `SentinelClient`**
+
 ```python
 jpeg = client.snapshot("kln_acme_000042", camera=1)
 with open("frame.jpg", "wb") as f:
     f.write(jpeg)
 ```
 
+**② JavaScript · `fetch`**
+
 ```javascript
 const res = await fetch(`${BASE}/v1/towers/kln_acme_000042/snapshot/cam1`);
 if (!res.ok) throw new Error((await res.json()).error.message);
 const blob = await res.blob();           // display: URL.createObjectURL(blob)
 ```
+
+**③ curl · shell**
 
 ```bash
 curl -s -o frame.jpg $BASE/v1/towers/kln_acme_000042/snapshot/cam1

@@ -14,6 +14,20 @@ All endpoints are under `/v1`. Bodies are JSON except snapshots
 Use the **[API Explorer](/api-explorer)** for interactive Swagger UI (fleet,
 tower proxy, alerts, enrollment).
 
+## Code examples (three languages)
+
+Every API reference page shows the **same operation** three ways. Look for
+these labels above each code block:
+
+| Label | Package / tool | Install |
+|-------|----------------|---------|
+| **① Python · `SentinelClient`** | `sentinel-sdk` | `pip install git+https://github.com/Yaqcodes/sentinel-sdk` |
+| **② JavaScript · `fetch`** | Browser or Node built-in | None |
+| **③ curl · shell** | Terminal | None (`curl`; `jq` optional) |
+
+TypeScript integrators can use **`@sentinel/sdk`** (same repo as Python) —
+see the [Alerts API](alerts-api) page for a TypeScript example.
+
 ## Endpoint families
 
 | Family | Backed by | Latency |
@@ -55,7 +69,7 @@ All fleet and proxy endpoints return errors in one envelope:
 | 503 | `tower_offline` | Tower unreachable over VPN | `TowerOfflineError` |
 | 503 | `registry_unavailable` | Fleet database unreachable | `APIError` |
 
-Python:
+**① Python · `SentinelClient`**
 
 ```python
 from sentinel_sdk import SentinelClient, TowerOfflineError, SentinelError
@@ -69,7 +83,7 @@ except SentinelError as e:
     log.error("platform API error: %s", e)
 ```
 
-JavaScript:
+**② JavaScript · `fetch`**
 
 ```javascript
 const res = await fetch(`${BASE}/v1/towers/kln_acme_000042/status`);

@@ -13,15 +13,21 @@ subnet (`/24`). Towers belong to exactly one customer.
 
 `GET /v1/customers`
 
+**① Python · `SentinelClient`**
+
 ```python
 customers = client.list_customers()
 for c in customers:
     print(c.customer_id, c.display_name, c.vpn_subnet, c.status)
 ```
 
+**② JavaScript · `fetch`**
+
 ```javascript
 const { customers } = await (await fetch(`${BASE}/v1/customers`)).json();
 ```
+
+**③ curl · shell**
 
 ```bash
 curl -s $BASE/v1/customers | jq
@@ -65,9 +71,13 @@ endpoint.
 
 `GET /v1/customers/{customer_id}`
 
+**① Python · `SentinelClient`**
+
 ```python
 customer = client.get_customer("cust_acme")
 ```
+
+**③ curl · shell**
 
 ```bash
 curl -s $BASE/v1/customers/cust_acme
@@ -79,9 +89,13 @@ curl -s $BASE/v1/customers/cust_acme
 
 `GET /v1/customers/{customer_id}/towers`
 
+**① Python · `SentinelClient`**
+
 ```python
 towers = client.list_customer_towers("cust_acme")
 ```
+
+**② JavaScript · `fetch`**
 
 ```javascript
 const { towers } = await (await fetch(`${BASE}/v1/customers/cust_acme/towers`)).json();

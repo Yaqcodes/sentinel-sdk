@@ -87,7 +87,7 @@ data: {"device_id":"kln_acme_000001","customer_id":"cust_acme","alert_type":"str
 
 ```
 
-TypeScript (`@sentinel/sdk`):
+**TypeScript · `@sentinel/sdk`** (same operations as ①, typed client)
 
 ```typescript
 const alerts = await client.listCustomerAlerts("cust_acme");

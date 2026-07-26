@@ -28,10 +28,12 @@ Your app ──HTTPS──► Control plane API ──WireGuard VPN──► Sen
 pip install git+https://github.com/Yaqcodes/sentinel-sdk
 ```
 
-No SDK required for JavaScript or shell — the API is plain HTTP; every
-reference page shows `fetch` and `curl` equivalents.
+Every API reference page labels examples **① Python · `SentinelClient`**, **②
+JavaScript · `fetch`**, and **③ curl · shell** — see [API Overview](api/overview#code-examples-three-languages).
 
 ## 2. First API call
+
+**① Python · `SentinelClient`**
 
 ```python
 from sentinel_sdk import SentinelClient
@@ -42,17 +44,23 @@ for tower in client.list_towers():
     print(tower.device_id, tower.status, tower.vpn_ip)
 ```
 
+**② JavaScript · `fetch`**
+
 ```javascript
 const res = await fetch("https://api.terra.example/v1/towers");
 const { towers } = await res.json();
 towers.forEach(t => console.log(t.device_id, t.status, t.vpn_ip));
 ```
 
+**③ curl · shell**
+
 ```bash
 curl -s https://api.terra.example/v1/towers | jq '.towers[] | {device_id, status}'
 ```
 
 ## 3. Move a camera and grab a frame
+
+**① Python · `SentinelClient`**
 
 ```python
 client.ptz_move("kln_acme_000042", camera=1, pan=0.5, tilt=-0.2)
@@ -68,6 +76,8 @@ seconds, and handle [`TowerOfflineError`](api/overview#errors).
 
 Towers push HMAC-signed alerts (tamper, stream failure, temperature…) to
 your webhook. Verify each one with the shared key:
+
+**① Python · `SentinelClient`**
 
 ```python
 from sentinel_sdk import AlertVerifier

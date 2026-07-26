@@ -20,10 +20,14 @@ ONVIF ceiling is ~1.6 s p95). Set client timeouts accordingly.
 
 `POST /v1/towers/{device_id}/ptz/move`
 
+**① Python · `SentinelClient`**
+
 ```python
 result = client.ptz_move("kln_acme_000042", camera=1, pan=0.5, tilt=-0.2, zoom=0.0)
 print(result["result"]["round_trip_ms"])
 ```
+
+**② JavaScript · `fetch`**
 
 ```javascript
 const res = await fetch(`${BASE}/v1/towers/kln_acme_000042/ptz/move`, {
@@ -32,6 +36,8 @@ const res = await fetch(`${BASE}/v1/towers/kln_acme_000042/ptz/move`, {
   body: JSON.stringify({ camera: 1, mode: "absolute", pan: 0.5, tilt: -0.2, zoom: 0.0 }),
 });
 ```
+
+**③ curl · shell**
 
 ```bash
 curl -s -X POST $BASE/v1/towers/kln_acme_000042/ptz/move \
@@ -60,10 +66,14 @@ Response `200`:
 Same endpoint, `mode: "continuous"` — moves at the given velocity for
 `seconds`, then stops:
 
+**① Python · `SentinelClient`**
+
 ```python
 client.ptz_move_continuous("kln_acme_000042", camera=1,
                            pan=0.3, tilt=0.0, zoom=0.0, seconds=0.5)
 ```
+
+**③ curl · shell**
 
 ```bash
 curl -s -X POST $BASE/v1/towers/kln_acme_000042/ptz/move \
@@ -75,10 +85,14 @@ curl -s -X POST $BASE/v1/towers/kln_acme_000042/ptz/move \
 
 `POST /v1/towers/{device_id}/ptz/stop`
 
+**① Python · `SentinelClient`**
+
 ```python
 client.ptz_stop("kln_acme_000042", camera=1)
 client.ptz_home("kln_acme_000042", camera=1)   # {"home": true}
 ```
+
+**③ curl · shell**
 
 ```bash
 curl -s -X POST $BASE/v1/towers/kln_acme_000042/ptz/stop \
@@ -89,10 +103,14 @@ curl -s -X POST $BASE/v1/towers/kln_acme_000042/ptz/stop \
 
 `GET /v1/towers/{device_id}/ptz/status?camera=1`
 
+**① Python · `SentinelClient`**
+
 ```python
 pos = client.ptz_status("kln_acme_000042", camera=1)
 print(pos.pan, pos.tilt, pos.zoom)
 ```
+
+**③ curl · shell**
 
 ```bash
 curl -s "$BASE/v1/towers/kln_acme_000042/ptz/status?camera=1"

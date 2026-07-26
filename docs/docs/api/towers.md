@@ -41,9 +41,13 @@ tunnel, and the local services the platform proxies to.
 
 `GET /v1/towers` — optional `?status=active` filter.
 
+**① Python · `SentinelClient`**
+
 ```python
 active = client.list_towers(status="active")
 ```
+
+**③ curl · shell**
 
 ```bash
 curl -s "$BASE/v1/towers?status=active"
@@ -53,10 +57,14 @@ curl -s "$BASE/v1/towers?status=active"
 
 `GET /v1/towers/{device_id}`
 
+**① Python · `SentinelClient`**
+
 ```python
 tower = client.get_tower("kln_acme_000042")
 print(tower.rtsp_url(1))   # rtsp://10.50.0.2:8554/cam1
 ```
+
+**② JavaScript · `fetch`**
 
 ```javascript
 const tower = await (await fetch(`${BASE}/v1/towers/kln_acme_000042`)).json();
@@ -74,12 +82,16 @@ only its hash). Until API auth is enforced, this endpoint must not be exposed
 beyond the Terra ops network.
 :::
 
+**① Python · `SentinelClient`**
+
 ```python
 reg = client.register_tower("cust_acme", serial=43)
 print(reg.device_id)          # kln_acme_000043
 print(reg.enrollment_token)   # enr_... — store securely, shown once
 print(reg.claim_code)         # clm_... — goes on the QR label
 ```
+
+**③ curl · shell**
 
 ```bash
 curl -s -X POST $BASE/v1/towers \

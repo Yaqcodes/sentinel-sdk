@@ -13,13 +13,19 @@ watchdog and media server.
 
 `GET /v1/towers/{device_id}/status`
 
+**① Python · `SentinelClient`**
+
 ```python
 status = client.tower_status("kln_acme_000042")
 ```
 
+**② JavaScript · `fetch`**
+
 ```javascript
 const status = await (await fetch(`${BASE}/v1/towers/kln_acme_000042/status`)).json();
 ```
+
+**③ curl · shell**
 
 ```bash
 curl -s $BASE/v1/towers/kln_acme_000042/status | jq
@@ -56,10 +62,14 @@ some builds). This is different from `503 tower_offline`.
 Whether each camera's RTSP rebroadcast path is live on the tower's media
 server — check this before pulling RTSP or debugging snapshot failures.
 
+**① Python · `SentinelClient`**
+
 ```python
 for path in client.tower_streams("kln_acme_000042"):
     print(path.name, "ready" if path.ready else "DOWN", f"{path.readers} readers")
 ```
+
+**③ curl · shell**
 
 ```bash
 curl -s $BASE/v1/towers/kln_acme_000042/streams | jq
